@@ -16,7 +16,12 @@ class ChessBoard
 
     public function add(Pawn $pawn, $xCoordinate, $yCoordinate, PieceColorEnum $pieceColor)
     {
-        throw new \ErrorException("Need to implement " . __METHOD__);
+    if ($this->isLegalBoardPosition($xCoordinate, $yCoordinate)) {
+
+        $pawn->setXCoordinate($xCoordinate);
+        $pawn->setYCoordinate($yCoordinate);
+        $pawn->setPieceColor($pieceColor);
+    }
     }
 
     /**
@@ -24,6 +29,12 @@ class ChessBoard
  	 **/
     public function isLegalBoardPosition($xCoordinate, $yCoordinate)
     {
-        throw new \ErrorException("Need to implement " . __METHOD__);
+        if ($xCoordinate < 0 || $xCoordinate > self::MAX_BOARD_WIDTH){
+            return false;
+        }
+        if ($yCoordinate < 0 || $yCoordinate > self::MAX_BOARD_HEIGHT){
+            return false;
+        }
+        return true;
     }
 }
